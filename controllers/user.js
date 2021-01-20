@@ -70,7 +70,10 @@ function loginUser(req, res){
             bcrypt.compare(password, user.password, (err, check) => {
                 if(err){ return res.status(500).send({message: 'Error'})};
 
-                if(check){ return res.status(200).send({user})};
+                if(check){ 
+                    user.password = undefined; // Remove property cause is encripted
+                    return res.status(200).send({user})
+                };
             });
         }else{
             return res.status(500).send({message: 'Error'})
