@@ -2,7 +2,7 @@
 
 const jwt = require('jwt-simple');
 const moment = require('moment');
-const secret = require('../config.json');
+const secret = "norobesclavessecretaspls";
 
 exports.createToken = function(user){
     const payload = {
