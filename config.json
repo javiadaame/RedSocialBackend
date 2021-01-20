@@ -4,5 +4,6 @@
     "db_ip": "localhost",
     "db_port": "27017",
     "web_port": "3800",
-    "web_ip": "localhost"
+    "web_ip": "localhost",
+    "secret": "norobesclavessecretaspls"
 }

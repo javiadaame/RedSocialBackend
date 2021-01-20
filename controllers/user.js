@@ -3,6 +3,7 @@
 const bcrypt = require('bcrypt-nodejs');
 const { reset } = require('nodemon');
 var User = require('../models/user');
+const jwt = require('../services/jwt');
 
 function test(req, res){
     res.status(200).send({
@@ -71,8 +72,16 @@ function loginUser(req, res){
                 if(err){ return res.status(500).send({message: 'Error'})};
 
                 if(check){ 
-                    user.password = undefined; // Remove property cause is encripted
-                    return res.status(200).send({user})
+                    if(params.gettoken){
+                        // Generate and Return token
+                        
+                        return res.status(200).send({
+                            token: jwt.createToken(user)
+                        });
+                    }else{
+                        user.password = undefined; // Remove property cause is encripted
+                        return res.status(200).send({user})
+                    }
                 };
             });
         }else{
