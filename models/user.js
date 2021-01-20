@@ -8,7 +8,8 @@ var UserSchema = Schema({
     nickname: String,
     email: String,
     password: String,
-    rank: String
+    rank: String,
+    image: String
 });
 
 module.exports = mongoose.model('User', UserSchema);
