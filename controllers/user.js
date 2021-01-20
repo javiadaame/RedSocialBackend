@@ -8,4 +8,13 @@ function test(req, res){
     });
 }
 
+function registerUser(req, res){
+    const params = req.body;
+    const user = new User();
+
+    if(params.name && params.surname && params.nickname && params.password && params.email){
+
+    }
+}
+
 module.exports = { test }
