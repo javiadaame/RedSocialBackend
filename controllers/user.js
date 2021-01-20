@@ -56,4 +56,26 @@ function registerUser(req, res){
     }
 }
 
-module.exports = { test, registerUser }
+function loginUser(req, res){
+
+    var params = req.body;
+    
+    const password = params.password;
+    const email = params.email;
+
+    User.findOne({email: email}, (err, user) => {
+        if(err){ return res.status(500).send({message: 'Error'})};
+
+        if(user){
+            bcrypt.compare(password, user.password, (err, check) => {
+                if(err){ return res.status(500).send({message: 'Error'})};
+
+                if(check){ return res.status(200).send({user})};
+            });
+        }else{
+            return res.status(500).send({message: 'Error'})
+        };
+    });
+}
+
+module.exports = { test, registerUser, loginUser}

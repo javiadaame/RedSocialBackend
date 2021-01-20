@@ -7,5 +7,6 @@ var api = express.Router();
 
 api.get('/test', UserController.test);
 api.post('/register', UserController.registerUser);
+api.get('/login', UserController.loginUser);
 
 module.exports = api;
