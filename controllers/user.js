@@ -88,3 +88,15 @@ exports.loginUser = function(req, res){
     });
 }
 
+exports.getUser = function(req, res){
+    var userId = req.params.id; // Params for the data of url, body for the data of post and put
+
+    User.findById(userId, (err, user) => {
+        if(err) return res.status(500).send({message: 'Error: ' + err});
+
+        if(!user) return res.status(404).send({message: 'Error: The user doesn´t exist'});
+       
+        return res.status(200).send({user});
+    });
+}
+
