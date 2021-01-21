@@ -129,3 +129,23 @@ exports.getUsers = function(req, res){
     });
 
 }
+
+exports.updateUser = function(req, res){
+    var userId = req.params.id;
+    var update = req.body;
+
+    delete update.password;
+
+    if(userId != req.user.sub){ //The user that is sended in URL must be the same that is in the authentication code
+        return res.status(500).send({message: 'Error: You don´t have permission to change the user data.'});
+    }
+
+    User.findByIdAndUpdate(userId, update, {new:true}, (err, userUpdated) => { //With new:True send the user updated
+        if(err) return res.status(500).send({message: 'Error: ' + err});
+
+        if(!userUpdated) return res.status(404).send({message: 'Error: Could not update the user.'});
+
+        return res.status(200).send({user: userUpdated});
+
+    });
+}
