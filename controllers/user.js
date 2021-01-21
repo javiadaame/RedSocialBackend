@@ -5,13 +5,11 @@ const { reset } = require('nodemon');
 var User = require('../models/user');
 const jwt = require('../services/jwt');
 
-function test(req, res){
-    res.status(200).send({
-        message: 'Aa'
-    });
+exports.home = function(req, res){
+    return res.status(200).send({message: 'Home page'});
 }
 
-function registerUser(req, res){
+exports.registerUser = function(req, res){
     const params = req.body;
     const user = new User();
 
@@ -57,7 +55,7 @@ function registerUser(req, res){
     }
 }
 
-function loginUser(req, res){
+exports.loginUser = function(req, res){
 
     var params = req.body;
     
@@ -90,4 +88,3 @@ function loginUser(req, res){
     });
 }
 
-module.exports = { test, registerUser, loginUser}
