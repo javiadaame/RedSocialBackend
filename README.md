@@ -1,2 +1,2 @@
 # RedSocialBackend
-A Backend based in NodeJS. I'm learning, and this project is for learning objective
+A Backend based in NodeJS. This project is for learning objective
