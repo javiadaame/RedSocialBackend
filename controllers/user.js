@@ -3,7 +3,11 @@
 const bcrypt = require('bcrypt-nodejs');
 const { reset } = require('nodemon');
 var User = require('../models/user');
-const jwt = require('../services/jwt');
+const jwt = require('../services/jwt'); 
+
+const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-pagination');
+
 
 exports.home = function(req, res){
     return res.status(200).send({message: 'Home page'});
@@ -88,6 +92,7 @@ exports.loginUser = function(req, res){
     });
 }
 
+// Get specific user
 exports.getUser = function(req, res){
     var userId = req.params.id; // Params for the data of url, body for the data of post and put
 
@@ -100,3 +105,27 @@ exports.getUser = function(req, res){
     });
 }
 
+// Get pagination of users
+exports.getUsers = function(req, res){
+    var identity_user_id = req.user.sub; // Take the id of the payload function
+    
+    var page = 1; // The default page is 1
+    if(req.params.page){ 
+        page = req.params.page; // Put the page of the request on url 
+    }
+
+    var items_per_page = 5; // The users showed in 1 page
+
+    User.find().sort('_id').paginate(page, items_per_page, (err,users, total) => {
+        if(err) return res.status(500).send({message: 'Error: ' + err});
+
+        if(!users) return res.status(404).send({message: 'Error: There aren´t users'});
+
+        return res.status(200).send({
+            users, 
+            total,
+            pages: Math.ceil(total/items_per_page)
+        });
+    });
+
+}

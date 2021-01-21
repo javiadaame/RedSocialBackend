@@ -15,8 +15,9 @@
     "connect-multiparty": "^2.2.0",
     "express": "^4.17.1",
     "jwt-simple": "^0.5.6",
-    "moment": "^2.29.1", 
-    "mongoose": "^5.11.12"
+    "moment": "^2.29.1",
+    "mongoose": "^5.11.12",
+    "mongoose-pagination": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
