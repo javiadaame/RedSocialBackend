@@ -7,6 +7,7 @@ var app = express();
 
 // Load routes
 var user_routes = require('../routes/user');
+var post_routes = require('../routes/post');
 
 // Middlewares
 app.use(bodyParser.urlencoded({extended:false})); 
@@ -20,6 +21,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/user', user_routes);
+app.use('/post', post_routes);
+
 // Export
 
 module.exports = app;

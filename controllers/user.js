@@ -5,7 +5,6 @@ const { reset } = require('nodemon');
 var User = require('../models/user');
 const jwt = require('../services/jwt'); 
 
-const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-pagination');
 
 
@@ -23,7 +22,7 @@ exports.registerUser = function(req, res){
         user.surname = params.surname;
         user.nickname = params.nickname;
         user.email = params.email;
-        user.rank = 'RANK_USER';
+        user.group = 'USER';
         user.image = null;
 
         // Duplicated users

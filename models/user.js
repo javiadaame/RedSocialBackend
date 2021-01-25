@@ -8,7 +8,7 @@ var UserSchema = Schema({
     nickname: String,
     email: String,
     password: String,
-    rank: String,
+    group: String,
     image: String
 });
 
