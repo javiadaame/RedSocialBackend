@@ -23,7 +23,6 @@ exports.registerUser = function(req, res){
         user.nickname = params.nickname;
         user.email = params.email;
         user.group = 'USER';
-        user.image = null;
 
         // Duplicated users
         User.find({ $or: [
